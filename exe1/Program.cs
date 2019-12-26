@@ -1,19 +1,19 @@
 ﻿using System;
 
-
+namespace exe1
+{
     class Program
     {
-    int diferentes = 0;
-    static void Main(string[] args)
+
+        static void Main(string[] args)
         {
             Program pr = new Program();
-        //entrada
-        string[] lista = new string[] { "arara", "mussum", "maratona", "anili", "abcdef", "arar" };
-        //string[] lista = new string[] { "arara","mussum","anili"};
+            //entrada
+            string[] lista = new string[] { "arara", "mussum", "maratonab", "anili", "abcdef", "arar" };
+            //string[] lista = new string[] { "arara","mussum","anili"};
             foreach (string palavra in lista)
             {
-                pr.Print(palavra);
-                pr.Palindromo(palavra);
+                pr.PalindromoCount(palavra);
             }
         }
 
@@ -22,50 +22,27 @@
         {
             Console.WriteLine(palavra);
         }
-        public string Palindromo(string palavra)
-    {
-        int initializer = (palavra.Length / 2);
-        int offset = 0;
-        if (palavra.Length % 2 == 0)
+   
+        public string PalindromoCount(string palavra)
         {
-            Console.WriteLine("Par");
-            initializer -= 1;
-            offset = +1;
-        }
-        else
-        {
-            Console.WriteLine("Impar");
-
-        }
-        
-        int value = PalindromoCheck(palavra, initializer, offset);
-        
-        Console.WriteLine("value:" + (value).ToString());
-        
-        
-        
-        return palavra;
-    }
-
-    private static int PalindromoCheck(string palavra, int initializer, int offset)
-    {
-        
-        for (int i = initializer + 1; i < palavra.Length; i++)
-        {
-            if (diferentes >= palavra.Length)
+            int count = 0;
+            Print(palavra.ToString());
+            for (int start = 0, end = palavra.Length - 1; start <= end; start++)
             {
-                diferentes = palavra.Length - offset;
+                Print(palavra[start].ToString() + palavra[end].ToString() + count);
+                if (palavra[start] != palavra[end])
+                {
+                    count++;
+                }
+                else
+                {
+                    end--;
+                }
             }
-            Console.WriteLine("[" + i.ToString() + "]"+ palavra[i]+":[" + (initializer + (initializer - i) + offset).ToString() + "]:" + palavra[initializer + (initializer - i) + offset]);
-            if (palavra[i] != palavra[(initializer + (initializer - i) + offset)])
-            {
-                diferentes += 1;
-                Console.WriteLine(diferentes.ToString());
-                PalindromoCheck(palavra, initializer + 1, offset, diferentes);
-            }
+            Print("Value:"+count.ToString());
+            return palavra;
         }
-        Console.WriteLine("callback");
-        return diferentes;
+
+
     }
 }
-

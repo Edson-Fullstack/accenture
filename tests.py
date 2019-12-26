@@ -18,19 +18,19 @@ class TestPages(unittest.TestCase):
 
     def test_page_gram1(self):
         app = myapp.test_client()
-        response = app.get('/test1')
+        response = app.get('/exe1')
         self.assertEqual(200, response.status_code)
 
     # testa a pagina para o segundo exercicio exercicio
     def test_page_gram2(self):
         app = myapp.test_client()
-        response = app.get('/test2')
+        response = app.get('/exe2')
         self.assertEqual(200, response.status_code)
 
     # testa a pagina para o manual
     def test_page_manual(self):
         app = myapp.test_client()
-        response = app.get('/test3')
+        response = app.get('/exe3')
         self.assertEqual(200, response.status_code)
 
     # teste acesso a pagina inexistente

@@ -21,15 +21,29 @@ myapp = Flask(__name__)
 def index():
     return render_template('index.html')
 
-# home page
+# pagina prova
 @myapp.route("/prova")
 def prova():
-    return render_template('prova.html')
+    endereco = 'https://docs.google.com/document/d/e/2PACX-1vSwqYo5LKmJXVPc_yHsitMtzuYliqXGjb7oDJiKxXcamI2LpU-H0uoT4KE65-Nvu19eqpZmZNdkl43c/pub?embedded=true'
+    return render_template('document.html', link=endereco)
 
-# home page
-@myapp.route("/manual")
-def manual():
-    return render_template('prova.html')
+# exe1
+@myapp.route("/exe1")
+def exe1():
+    endereco = 'https://docs.google.com/document/d/e/2PACX-1vQiQynOeOeMrsheQTVNNXZzlhdAkBTjUCLKk04mQsDKodVIy1wnMd97CWwIge0QTcuQBVgnqLFqtfjm/pub?embedded=true'
+    return render_template('document.html', link=endereco)
+
+# exe2
+@myapp.route("/exe2")
+def exe2():
+    endereco = 'https://docs.google.com/document/d/e/2PACX-1vSZhb6BU4bzu9YM2BUTqTGGuUW1IFrdYO3MRON2w6LVvcNYhTW12BEtbPaDZW4Nzy5kUQmmVxGtPXOM/pub?embedded=true'
+    return render_template('document.html', link=endereco)
+
+# exe3
+@myapp.route("/exe3")
+def exe3():
+    endereco = 'https://docs.google.com/document/d/e/2PACX-1vRjombWRMYvF6qzfT02JqLUUSgW1ArNmTLrw9Hx6vrChUtHZ8VKJphcKD1wFqPJUgdp8u6qSG7Wg1mG/pub?embedded=true'
+    return render_template('document.html', link=endereco)
 
 
 if __name__ == "__main__":

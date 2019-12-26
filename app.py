@@ -3,7 +3,7 @@ PEP 8 -- Style Guide for Python Resume
 pip8 app
 """
 from flask import Flask, render_template, url_for, request
-
+import pygal
 TEST_CONTROL = 0
 
 
@@ -44,6 +44,19 @@ def exe2():
 def exe3():
     endereco = 'https://docs.google.com/document/d/e/2PACX-1vRjombWRMYvF6qzfT02JqLUUSgW1ArNmTLrw9Hx6vrChUtHZ8VKJphcKD1wFqPJUgdp8u6qSG7Wg1mG/pub?embedded=true'
     return render_template('document.html', link=endereco)
+
+
+@myapp.route("/chart")
+def chart():
+    graph = pygal.Line()
+    graph.title = '% Change Coolness of programming languages over time.'
+    graph.x_labels = ['2011', '2012', '2013', '2014', '2015', '2016']
+    graph.add('Pithon',  [15, 31, 89, 200, 356, 900])
+    graph.add('Java',    [15, 45, 76, 80,  91,  95])
+    graph.add('C++',     [5,  51, 54, 102, 150, 201])
+    graph.add('All others combined!',  [5, 15, 21, 55, 92, 105])
+    graph_data = graph.render_data_uri()
+    return render_template("chart.html", graph_data=graph_data)
 
 
 if __name__ == "__main__":

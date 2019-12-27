@@ -46,6 +46,13 @@ def exe3():
     return render_template('document.html', link=endereco)
 
 
+@myapp.route("/doc")
+def doc():
+    f = open("./exe1/Program.cs", "r")
+    text = f.read().replace('\n', '<br>')
+    return render_template('code.html', text=text)
+
+
 @myapp.route("/chart")
 def chart():
     graph = pygal.Line()

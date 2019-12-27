@@ -63,12 +63,8 @@ def chart():
      graph.add('C++',     [5,  51, 54, 102, 150, 201])
      graph.add('All others combined!',  [5, 15, 21, 55, 92, 105])
      graph_data = graph.render_data_uri()"""
-<<<<<<< HEAD
     # return render_template("chart.html", graph_data=graph_data)
     return render_template("chart.html")
-=======
-    return render_template("chart.html", graph_data=graph_data)
->>>>>>> d210ea2330dec2ff4339a9259cf9a2e989821000
 
 
 if __name__ == "__main__":

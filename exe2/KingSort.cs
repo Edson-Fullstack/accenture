@@ -5,20 +5,20 @@ using System.Linq;
 namespace exe2
 {
     //cada rei contem Nome
-    //Ordinal I,V,X
-    //e Numeral 12345
+    //Ordinal 12345
+    //e Numeral I,v,X
     public class King
     {
         public string Name { get; set; }
         public int Ordinal { get; set; }
         public string Numeral { get; set; }
     }
-    public class Program
+    public class KingSort
     {
         static void Main(string[] args)
         {
             //fix para main static
-            Program pr = new Program();
+            KingSort pr = new KingSort();
             //ENTRADA nome do rei e testes para todas as entradas apresentadas
             string[] kings = new string[] { "Louis IX", "Louis VIII" };//pass
             //string[] kings = new string[] { "Louis IX", "Philippe II" };//pass
@@ -26,7 +26,8 @@ namespace exe2
             //string[] kings = new string[] { "John X", "John I", "John L", "John V" };//pass
             //string[] kings = new string[] { "Philippe VI", "Jean II", "Charles V", "Charles VI", "Charles VII", "Louis XI" };//pass
             //string[] kings = new string[] { "Philippe II", "Philip II" };//pass
-            pr.GetSortedList(kings);
+            string o=string.Join(", ", pr.GetSortedList(kings));
+            Console.Write("{"+o+"}");
         }
         //methodo de print generico
         public void Print(string palavra)
@@ -54,13 +55,19 @@ namespace exe2
             Print("Order:");
             //aplica o methodo para obter a ordenação descrita
             var kk=kingss.OrderBy(King => King.Name).ThenBy(King => King.Ordinal);
-            string[] kingsOrder;
+            string[] kingsOrder=new string[kings.Length];
+            string s;
+            int j = 0;
+            //formatar saida
             foreach (King ki in kk)
             {
-                Console.WriteLine("{0} - {1}", ki.Name, ki.Numeral);
-
+                s= ki.Name+" "+ki.Numeral;
+                Console.WriteLine(s);
+                kingsOrder[j]=s;
+                j++;
             }
-            return kings;
+            
+            return kingsOrder;
         }
         //Converte o valor Romano para int
         public int SimplerConverter(string number)
@@ -121,7 +128,7 @@ namespace exe2
 
                 default:
                     {
-                        throw new ArgumentException("Ivalid charakter");
+                        throw new ArgumentException("Ivalid character fornecido para conversão");
                     }
 
             }

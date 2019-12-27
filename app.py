@@ -46,9 +46,17 @@ def exe3():
     return render_template('document.html', link=endereco)
 
 
-@myapp.route("/doc")
-def doc():
+@myapp.route("/doc1")
+def doc1():
     f = open("./exe1/Program.cs", "r")
+    text = f.read().replace('\n', '<br>')
+    f.close()
+    return render_template('code.html', text=text)
+
+
+@myapp.route("/doc3")
+def doc3():
+    f = open("./exe2/KingSort.cs", "r")
     text = f.read().replace('\n', '<br>')
     f.close()
     return render_template('code.html', text=text)

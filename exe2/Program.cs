@@ -4,49 +4,65 @@ using System.Linq;
 
 namespace exe2
 {
+    //cada rei contem Nome
+    //Ordinal I,V,X
+    //e Numeral 12345
+    public class King
+    {
+        public string Name { get; set; }
+        public int Ordinal { get; set; }
+        public string Numeral { get; set; }
+    }
     public class Program
     {
         static void Main(string[] args)
         {
             //fix para main static
             Program pr = new Program();
-            //ENTRADA nome do rei
-            //string[] kings = new string[] { "Louis IX", "Louis VIII" };//pass
+            //ENTRADA nome do rei e testes para todas as entradas apresentadas
+            string[] kings = new string[] { "Louis IX", "Louis VIII" };//pass
             //string[] kings = new string[] { "Louis IX", "Philippe II" };//pass
             //string[] kings = new string[] { "Richard III", "Richard I", "Richard II" };//pass
-            string[] kings = new string[] { "John X", "John I", "John L", "John V" };//fail
+            //string[] kings = new string[] { "John X", "John I", "John L", "John V" };//pass
             //string[] kings = new string[] { "Philippe VI", "Jean II", "Charles V", "Charles VI", "Charles VII", "Louis XI" };//pass
             //string[] kings = new string[] { "Philippe II", "Philip II" };//pass
             pr.GetSortedList(kings);
         }
-
+        //methodo de print generico
         public void Print(string palavra)
         {
             Console.WriteLine(palavra);
         }
-        public void PrintKing(string name, string rnumeral, int numeral)
+        //methodo para printar um rei
+        public void PrintKing(King k)
         {
-            Console.WriteLine(name + rnumeral + "-" + numeral);
+            Console.WriteLine(k.Name + k.Ordinal + "-" + k.Numeral);
         }
+        //função para objeter a lista de reis ordenada
         public string[] GetSortedList(string[] kings)
         {
-            string[] names = new string[kings.Length];
-            string[] ordinal = new string[kings.Length];
-            int[] numeral = new int[kings.Length];
+            //utiliza o Ilist pois pode armazenar objetos e possui os metodos orderby e thenby
+            IList <King> kingss=new King[kings.Length];
+            King k;
+            //gera a lista com os reis
             for (int i = 0; i < kings.Length; i++)
             {
                 string[] set = kings[i].Split(' ');
-                names[i] = set[0]+' '+SimplerConverter(set[1]);
-                PrintKing(names[i], ordinal[i], numeral[i]);
+                k = new King { Name = set[0], Ordinal = SimplerConverter(set[1]), Numeral = set[1] };
+                kingss[i]=k;
             }
-            Console.WriteLine();
-            IEnumerable<string> kingsOrder = from name in names orderby name select name;
-            foreach (string king in kingsOrder)
+            Print("Order:");
+            //aplica o methodo para obter a ordenação descrita
+            var kk=kingss.OrderBy(King => King.Name).ThenBy(King => King.Ordinal);
+            string[] kingsOrder;
+            foreach (King ki in kk)
             {
-                Print(king);
+                Console.WriteLine("{0} - {1}", ki.Name, ki.Numeral);
+
             }
             return kings;
         }
+        //Converte o valor Romano para int
         public int SimplerConverter(string number)
         {
             number = number.ToUpper();
@@ -63,6 +79,7 @@ namespace exe2
                 result -= 200;
             return result;
         }
+        //auxilia na conversão para int
         private int ConvertLetterToNumber(char letter)
         {
             switch (letter)
@@ -107,10 +124,7 @@ namespace exe2
                         throw new ArgumentException("Ivalid charakter");
                     }
 
-
-
             }
-
         }
     }
 }

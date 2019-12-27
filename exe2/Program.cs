@@ -3,6 +3,7 @@ using System.Collections.Generic;
 
 namespace exe2
 {
+
     class Program
     {
         static void Main(string[] args)
@@ -11,25 +12,36 @@ namespace exe2
             Program pr = new Program();
             //ENTRADA nome do rei
             string[] kings = new string[] { "Louis IX", "Louis VIII" };
-            pr.KingSort(kings);
+            pr.GetSortedList(kings);
         }
 
         public void Print(string palavra)
         {
             Console.WriteLine(palavra);
         }
-        public void KingSort(string[] kings)
+        public void PrintKing(string name,string rnumeral,int numeral)
         {
-
+            Console.WriteLine(name+ rnumeral+"-"+numeral);
+        }
+        public string[] GetSortedList(string[] kings)
+        {
+            string[] names = new string[kings.Length];
+            string[] ordinal = new string[kings.Length];
+            int[] numeral = new int[kings.Length];
             for (int i=0;i<kings.Length;i++)
             {
                 string[] set = kings[i].Split(' ');
-                
-                Print(set[0]);
-                Print(set[1]);
-                Print(SimplerConverter(set[1]).ToString());
+                int j = i;
+                while (set[j].CompareTo(names[i]) < 0)
+                {
+                    Print(j.ToString());
+                }
+                names[i] = set[0];
+                ordinal[i] = set[1];
+                numeral[i] = SimplerConverter(set[1]);
+                PrintKing(names[i],ordinal[i],numeral[i]);
             }
-
+            return kings;
         }
         public int SimplerConverter(string number)
         {

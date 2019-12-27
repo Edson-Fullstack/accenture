@@ -50,6 +50,7 @@ def exe3():
 def doc():
     f = open("./exe1/Program.cs", "r")
     text = f.read().replace('\n', '<br>')
+    f.close()
     return render_template('code.html', text=text)
 
 

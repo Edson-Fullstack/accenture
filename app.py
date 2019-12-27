@@ -3,7 +3,7 @@ PEP 8 -- Style Guide for Python Resume
 pip8 app
 """
 from flask import Flask, render_template, url_for, request
-import pygal
+
 TEST_CONTROL = 0
 
 
@@ -55,18 +55,18 @@ def doc():
 
 @myapp.route("/chart")
 def chart():
-    graph = pygal.Line()
-    graph.title = '% Change Coolness of programming languages over time.'
-    graph.x_labels = ['2011', '2012', '2013', '2014', '2015', '2016']
-    graph.add('Pithon',  [15, 31, 89, 200, 356, 900])
-    graph.add('Java',    [15, 45, 76, 80,  91,  95])
-    graph.add('C++',     [5,  51, 54, 102, 150, 201])
-    graph.add('All others combined!',  [5, 15, 21, 55, 92, 105])
-    graph_data = graph.render_data_uri()
+    """ graph = pygal.Line()
+     graph.title = '% Change Coolness of programming languages over time.'
+     graph.x_labels = ['2011', '2012', '2013', '2014', '2015', '2016']
+     graph.add('Pithon',  [15, 31, 89, 200, 356, 900])
+     graph.add('Java',    [15, 45, 76, 80,  91,  95])
+     graph.add('C++',     [5,  51, 54, 102, 150, 201])
+     graph.add('All others combined!',  [5, 15, 21, 55, 92, 105])
+     graph_data = graph.render_data_uri()"""
     return render_template("chart.html", graph_data=graph_data)
 
 
 if __name__ == "__main__":
-    # rodar app no local host(host='0.0.0.0', port=80,debug=True)
-    # ter apenas 1 servidor respodendo na porta 80
+        # rodar app no local host(host='0.0.0.0', port=80,debug=True)
+        # ter apenas 1 servidor respodendo na porta 80
     myapp.run(host='0.0.0.0', port=80, debug=True)

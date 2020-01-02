@@ -6,7 +6,7 @@ namespace exe2
 {
     //cada rei contem Nome
     //Ordinal 12345
-    //e Numeral I,v,X
+    //e Numeral I,V ,X
     public class King
     {
         public string Name { get; set; }
@@ -52,7 +52,7 @@ namespace exe2
                 k = new King { Name = set[0], Ordinal = SimplerConverter(set[1]), Numeral = set[1] };
                 kingss[i]=k;
             }
-            Print("Order:");
+            //Print("Order:");
             //aplica o methodo para obter a ordenação descrita
             var kk=kingss.OrderBy(King => King.Name).ThenBy(King => King.Ordinal);
             string[] kingsOrder=new string[kings.Length];
@@ -62,7 +62,7 @@ namespace exe2
             foreach (King ki in kk)
             {
                 s= ki.Name+" "+ki.Numeral;
-                Console.WriteLine(s);
+                //Console.WriteLine(s);
                 kingsOrder[j]=s;
                 j++;
             }
@@ -128,7 +128,7 @@ namespace exe2
 
                 default:
                     {
-                        throw new ArgumentException("Ivalid character fornecido para conversão");
+                        throw new ArgumentException("Invalid caracter");
                     }
 
             }

@@ -14,6 +14,13 @@ namespace exe2Test
             Assert.Equal(10,c);
         }
         [Fact]
+        public void ordinal9()
+        {
+            KingSort k = new KingSort();
+            int c = k.SimplerConverter("IX");
+            Assert.Equal(9, c);
+        }
+        [Fact]
         public void test0()
         {
             KingSort ks = new KingSort();

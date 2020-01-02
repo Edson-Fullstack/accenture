@@ -1,6 +1,7 @@
 ﻿using System;
 
-
+namespace exe1
+{
     public class Program
     {
 
@@ -60,3 +61,4 @@
             return count;
         }
     }
+}
